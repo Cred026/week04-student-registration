@@ -1,2 +1,5 @@
 *
+!student-profile-pictures/
+student-profile-pictures/*
+!student-profile-pictures/default.jpg
 !.gitignore
