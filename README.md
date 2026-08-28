@@ -4,7 +4,7 @@
 
 **Mini Project 03: Student Registration System with Laravel Forms, Validation, and File Upload**
 
-This project was developed for ITST 302 – Client-Server Technologies, Week 4. It uses Laravel 13, Blade, Tailwind CSS 4, and SQLite for local development. The database configuration can later be changed to MariaDB by following the [database setup guide](docs/database-setup.md).
+This project was developed for ITST 302 – Client-Server Technologies, Week 4. It uses Laravel 13, Blade, Tailwind CSS 4, and SQLite for local development. Sir gumamit po ako ng Codex dito. Wala busy sa system eh luge naman sa requirements nyo sir. Didnt research anything AI prolly hallucinated the sources and flowchart is aight i guess? Sinabi ko SQLITE nalang gamitin kasi tinamad akong mag setup ng mariadb eh, pero sinabi ko naman dyan na maglagay ng docs para mag setup nyan so its good i guess. The database configuration can later be changed to MariaDB by following the [database setup guide](docs/database-setup.md).
 
 ## 2. Introduction
 
@@ -65,19 +65,19 @@ flowchart LR
 
 ## 5. Validation Rules
 
-| Field | Rules | Purpose |
-| :--- | :--- | :--- |
-| Student ID | Required, string, maximum 50 characters, unique | Prevents missing or duplicate institutional identifiers. |
-| First and last names | Required strings, maximum 100 characters | Ensures every record can be identified while limiting excessive input. |
-| Middle name | Optional string, maximum 100 characters | Supports students who do not have or use a middle name. |
-| Email | Required, normalized to lowercase, valid email, maximum 255 characters, unique | Produces a usable contact address and avoids duplicate accounts. |
-| Mobile number | Required string containing 10–15 digits | Accepts only numeric digits while preserving leading zeroes. |
-| Date of birth | Required date before today | Rejects missing, malformed, or future dates. |
-| Gender | Required value from the displayed options | Prevents unexpected values from bypassing the form choices. |
-| Program | Required supported program | Keeps academic program data consistent for filtering and reporting. |
-| Year level | Required value from first through fourth year | Restricts enrollment data to supported year levels. |
-| Address | Required string, maximum 1,000 characters | Collects contact information without allowing unbounded text. |
-| Profile picture | Required image; JPG, JPEG, or PNG; maximum 2 MB | Blocks unsupported files and limits storage and upload size. |
+| Field                | Rules                                                                          | Purpose                                                                |
+| :------------------- | :----------------------------------------------------------------------------- | :--------------------------------------------------------------------- |
+| Student ID           | Required, string, maximum 50 characters, unique                                | Prevents missing or duplicate institutional identifiers.               |
+| First and last names | Required strings, maximum 100 characters                                       | Ensures every record can be identified while limiting excessive input. |
+| Middle name          | Optional string, maximum 100 characters                                        | Supports students who do not have or use a middle name.                |
+| Email                | Required, normalized to lowercase, valid email, maximum 255 characters, unique | Produces a usable contact address and avoids duplicate accounts.       |
+| Mobile number        | Required string containing 10–15 digits                                        | Accepts only numeric digits while preserving leading zeroes.           |
+| Date of birth        | Required date before today                                                     | Rejects missing, malformed, or future dates.                           |
+| Gender               | Required value from the displayed options                                      | Prevents unexpected values from bypassing the form choices.            |
+| Program              | Required supported program                                                     | Keeps academic program data consistent for filtering and reporting.    |
+| Year level           | Required value from first through fourth year                                  | Restricts enrollment data to supported year levels.                    |
+| Address              | Required string, maximum 1,000 characters                                      | Collects contact information without allowing unbounded text.          |
+| Profile picture      | Required image; JPG, JPEG, or PNG; maximum 2 MB                                | Blocks unsupported files and limits storage and upload size.           |
 
 Validation is performed on the server because browser attributes can be removed or bypassed. The `student_id` and `email` columns also have unique database indexes, providing a final integrity constraint if concurrent requests pass application validation at nearly the same time. Only validated, fillable attributes are mass-assigned to the model.
 
@@ -106,22 +106,22 @@ erDiagram
     }
 ```
 
-| Column | Migration type | Constraints |
-| :--- | :--- | :--- |
-| `id` | Auto-incrementing integer | Primary key |
-| `student_id` | String, 50 characters | Required, unique |
-| `first_name` | String, 100 characters | Required |
-| `middle_name` | String, 100 characters | Nullable |
-| `last_name` | String, 100 characters | Required |
-| `email` | String, 255 characters | Required, unique |
-| `mobile_number` | String, 20 characters | Required |
-| `date_of_birth` | Date | Required |
-| `gender` | String, 30 characters | Required |
-| `program` | String, 100 characters | Required |
-| `year_level` | String, 20 characters | Required |
-| `address` | Text | Required |
-| `profile_picture` | String, 255 characters | Nullable at schema level; required for form submissions |
-| `created_at`, `updated_at` | Timestamps | Managed by Eloquent |
+| Column                     | Migration type            | Constraints                                             |
+| :------------------------- | :------------------------ | :------------------------------------------------------ |
+| `id`                       | Auto-incrementing integer | Primary key                                             |
+| `student_id`               | String, 50 characters     | Required, unique                                        |
+| `first_name`               | String, 100 characters    | Required                                                |
+| `middle_name`              | String, 100 characters    | Nullable                                                |
+| `last_name`                | String, 100 characters    | Required                                                |
+| `email`                    | String, 255 characters    | Required, unique                                        |
+| `mobile_number`            | String, 20 characters     | Required                                                |
+| `date_of_birth`            | Date                      | Required                                                |
+| `gender`                   | String, 30 characters     | Required                                                |
+| `program`                  | String, 100 characters    | Required                                                |
+| `year_level`               | String, 20 characters     | Required                                                |
+| `address`                  | Text                      | Required                                                |
+| `profile_picture`          | String, 255 characters    | Nullable at schema level; required for form submissions |
+| `created_at`, `updated_at` | Timestamps                | Managed by Eloquent                                     |
 
 ## 7. Registration Flowchart
 
@@ -144,6 +144,14 @@ flowchart TD
     M --> N[Display student profile]
 ```
 
+## 8. Screenshots
+
+- Please see the directory within the repository names "screenshots"
+
+## 9-10.
+
+- None, codex is a very good boy if you give it some markdown files to eat
+
 ## 11. Reflection
 
 Building this Student Registration System reinforced that validation is not merely a form feature; it is a boundary that protects the quality and safety of an application’s data. A registration page may look simple, but every field represents an assumption that must be checked. Student IDs and email addresses must be unique, dates must be realistic, phone numbers must retain leading zeroes, and uploaded files must actually be acceptable images. Encoding these expectations in a dedicated Form Request made the rules visible, reusable within the request flow, and easier to test than placing everything directly in the controller.
@@ -158,16 +166,16 @@ Finally, the project demonstrated how registration systems support real enterpri
 
 ## 12. References
 
-Laravel. (2026). *Directory structure*. https://laravel.com/framework/docs/13.x/structure
+Laravel. (2026). _Directory structure_. https://laravel.com/framework/docs/13.x/structure
 
-Laravel. (2026). *File storage*. https://laravel.com/framework/docs/filesystem
+Laravel. (2026). _File storage_. https://laravel.com/framework/docs/filesystem
 
-Laravel. (2026). *Request lifecycle*. https://laravel.com/framework/docs/13.x/lifecycle
+Laravel. (2026). _Request lifecycle_. https://laravel.com/framework/docs/13.x/lifecycle
 
-Laravel. (2026). *Validation*. https://laravel.com/framework/docs/13.x/validation
+Laravel. (2026). _Validation_. https://laravel.com/framework/docs/13.x/validation
 
-PHP Documentation Group. (n.d.). *POST method uploads*. PHP Manual. https://www.php.net/manual/en/features.file-upload.post-method.php
+PHP Documentation Group. (n.d.). _POST method uploads_. PHP Manual. https://www.php.net/manual/en/features.file-upload.post-method.php
 
-SQLite Consortium. (n.d.). *Datatypes in SQLite*. https://www.sqlite.org/datatype3.html
+SQLite Consortium. (n.d.). _Datatypes in SQLite_. https://www.sqlite.org/datatype3.html
 
-Tailwind Labs. (n.d.). *Responsive design*. Tailwind CSS. https://tailwindcss.com/docs/responsive-design
+Tailwind Labs. (n.d.). _Responsive design_. Tailwind CSS. https://tailwindcss.com/docs/responsive-design
